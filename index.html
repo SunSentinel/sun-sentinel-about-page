@@ -1,622 +1,652 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Florida Sun Sentinel - Contact Directory</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brandRed: '#D80000',
-                        brandRedDark: '#B00000',
-                        newspaperBg: '#FAFAFA',
-                        newspaperCard: '#FFFFFF',
-                        borderGray: '#E2E2E2',
-                        darkText: '#121212',
-                        mutedText: '#555555'
-                    },
-                    fontFamily: {
-                        serif: ['Noto Serif', 'Georgia', 'serif'],
-                        sans: ['Noto Sans', 'Helvetica', 'Arial', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        body {
-            font-family: 'Noto Sans', 'Helvetica', 'Arial', sans-serif;
-            background-color: #FAFAFA;
-            color: #121212;
-            -webkit-font-smoothing: antialiased;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>South Florida Sun Sentinel Directory</title>
+  <!-- Google Fonts: Noto Serif & Noto Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-red: #D80000;
+      --dark-red: #B00000;
+      --black: #111111;
+      --gray-dark: #333333;
+      --gray-mid: #666666;
+      --gray-light: #F4F4F5;
+      --border-color: #E2E8F0;
+      --font-serif: 'Noto Serif', Georgia, serif;
+      --font-sans: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
 
-        .section-header-line {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .section-header-line::after {
-            content: "";
-            flex-grow: 1;
-            height: 1px;
-            background-color: #121212;
-            margin-left: 1rem;
-        }
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background-color: #FFFFFF;
+      line-height: 1.5;
+      padding: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        .accent-hover-border {
-            transition: all 0.2s ease-in-out;
-        }
-        
-        .accent-hover-border:hover {
-            border-color: #D80000;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(216, 0, 0, 0.08);
-        }
+    /* Quick Filter & Quick Links Bar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--black);
+    }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F1F1F1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D80000;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #B00000;
-        }
+    .search-box {
+      position: relative;
+      flex: 1 1 280px;
+    }
 
-        .searchable-card {
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-        .searchable-card.hidden-card {
-            display: none !important;
-        }
-    </style>
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 36px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      border: 1px solid #CCC;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary-red);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      fill: var(--gray-mid);
+      width: 16px;
+      height: 16px;
+    }
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .quick-nav a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--black);
+      text-decoration: none;
+      padding: 6px 12px;
+      background: var(--gray-light);
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .quick-nav a:hover {
+      background: var(--primary-red);
+      color: #FFF;
+    }
+
+    /* Grid Layout */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .col-full { grid-column: span 12; }
+    .col-half { grid-column: span 6; }
+    .col-third { grid-column: span 4; }
+
+    @media (max-width: 900px) {
+      .col-half, .col-third { grid-column: span 12; }
+    }
+
+    /* Section Cards */
+    .card {
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--black);
+      padding: 20px;
+      background: #FFFFFF;
+    }
+
+    .card.highlight {
+      border-top-color: var(--primary-red);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title-icon {
+      color: var(--primary-red);
+      font-size: 1rem;
+    }
+
+    p, li {
+      font-size: 0.9rem;
+      color: var(--gray-dark);
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--primary-red);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Action Buttons */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-decoration: none !important;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary-red);
+      color: #FFFFFF !important;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-red);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black) !important;
+      border: 1px solid var(--black);
+    }
+
+    .btn-outline:hover {
+      background: var(--black);
+      color: #FFFFFF !important;
+    }
+
+    /* Guide Links List */
+    .guide-list {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .guide-list li {
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .guide-list li:last-child {
+      border-bottom: none;
+    }
+
+    .guide-list a {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--black);
+    }
+
+    .guide-list a:hover {
+      color: var(--primary-red);
+    }
+
+    .guide-list span {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: var(--gray-mid);
+      font-weight: normal;
+      margin-top: 2px;
+    }
+
+    /* Staff Directory Cards */
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .staff-card {
+      background: var(--gray-light);
+      padding: 10px 12px;
+      border-left: 3px solid var(--black);
+    }
+
+    .staff-name {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--black);
+    }
+
+    .staff-title {
+      font-size: 0.78rem;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .staff-contact {
+      font-size: 0.8rem;
+      word-break: break-all;
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: #FFF;
+      width: 100%;
+      max-width: 500px;
+      padding: 24px;
+      border-top: 4px solid var(--primary-red);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray-mid);
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #CCC;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+    }
+
+    .form-group textarea {
+      height: 90px;
+      resize: vertical;
+    }
+
+    /* Footer Meta Info */
+    .directory-footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--gray-mid);
+    }
+  </style>
 </head>
-<body class="p-2 sm:p-4 min-h-screen">
+<body>
 
-    <div class="max-w-6xl mx-auto bg-white border border-borderGray shadow-sm p-4 sm:p-6">
+  <!-- Search & Navigation -->
+  <div class="toolbar">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="directorySearch" placeholder="Search contact, name, department..." onkeyup="filterDirectory()">
+    </div>
+    <div class="quick-nav">
+      <a href="#customer-service">Customer Service</a>
+      <a href="#advertising">Advertising</a>
+      <a href="#newsroom">Newsroom</a>
+      <a href="#resources">Resources</a>
+    </div>
+  </div>
 
-        <!-- Search & Filter Bar (First element, no headers above) -->
-        <div class="mb-6 space-y-3 pb-4 border-b border-borderGray">
-            <div class="relative max-w-xl mx-auto">
-                <input 
-                    type="text" 
-                    id="directorySearch" 
-                    placeholder="Search by name, department, phone, email or topic..." 
-                    class="w-full px-4 py-2.5 pl-10 pr-10 text-xs sm:text-sm bg-newspaperBg border border-gray-300 rounded-none focus:outline-none focus:border-brandRed focus:ring-1 focus:ring-brandRed text-darkText transition-all"
-                    oninput="filterDirectory()"
-                >
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-xs"></i>
-                <button 
-                    id="clearSearch" 
-                    onclick="clearSearchInput()" 
-                    class="hidden absolute right-3 top-2.5 text-gray-400 hover:text-brandRed text-xs px-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+  <div class="grid-layout">
 
-            <!-- Quick Navigation Buttons -->
-            <div class="flex flex-wrap justify-center gap-1.5 text-[11px] font-bold uppercase tracking-wider">
-                <button onclick="scrollToSection('customer-service')" class="px-2.5 py-1 border border-darkText bg-darkText text-white hover:bg-brandRed hover:border-brandRed transition-colors">
-                    Customer Service
-                </button>
-                <button onclick="scrollToSection('newsroom-leadership')" class="px-2.5 py-1 border border-darkText text-darkText hover:bg-brandRed hover:text-white hover:border-brandRed transition-colors">
-                    Newsroom
-                </button>
-                <button onclick="scrollToSection('advertising')" class="px-2.5 py-1 border border-darkText text-darkText hover:bg-brandRed hover:text-white hover:border-brandRed transition-colors">
-                    Advertising
-                </button>
-                <button onclick="scrollToSection('community-engagement')" class="px-2.5 py-1 border border-darkText text-darkText hover:bg-brandRed hover:text-white hover:border-brandRed transition-colors">
-                    Community
-                </button>
-                <button onclick="scrollToSection('resources-services')" class="px-2.5 py-1 border border-darkText text-darkText hover:bg-brandRed hover:text-white hover:border-brandRed transition-colors">
-                    Resources
-                </button>
-            </div>
+    <!-- CUSTOMER SERVICE & SUBSCRIPTIONS -->
+    <div class="card col-half highlight searchable-item" id="customer-service">
+      <div class="card-title">
+        <span>Customer Service & Subscriptions</span>
+        <span class="card-title-icon">&#9733;</span>
+      </div>
+      <p>For customer service, subscription/delivery issues, or site/app help:</p>
+      <p><strong>Email:</strong> <a href="mailto:CustomerService@SunSentinel.com">CustomerService@SunSentinel.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:9543752018">954-375-2018</a></p>
+
+      <div class="btn-group">
+        <a href="https://mktops.sun-sentinel.com/subscriptions/land-premium/?market=ss&source=index&g2i_source=SB&g2i_medium=contact-us&g2i_campaign=BAU-6-months-1" target="_blank" class="btn btn-primary">Subscribe Now</a>
+        <a href="https://www.sun-sentinel.com/help-center/" target="_blank" class="btn btn-outline">Help Center</a>
+      </div>
+
+      <ul class="guide-list">
+        <li>
+          <a href="https://www.sun-sentinel.com/subscription-help/" target="_blank">How to Log Into Your Subscription &rsaquo;</a>
+          <span>Guide on logging in and password recovery options.</span>
+        </li>
+        <li>
+          <a href="https://www.sun-sentinel.com/enewspaper-help/" target="_blank">Access the Print Edition Online &rsaquo;</a>
+          <span>Guide on accessing eNewspapers for digital & print subscribers.</span>
+        </li>
+        <li>
+          <a href="https://www.sun-sentinel.com/subscription-help/" target="_blank">Activate Your Digital Subscription &rsaquo;</a>
+          <span>Instructions on activating unlimited access to SunSentinel.com.</span>
+        </li>
+        <li>
+          <a href="https://www.sun-sentinel.com/subscriber-benefits/" target="_blank">Subscriber Benefits &rsaquo;</a>
+          <span>Explore all the perks included with your digital membership.</span>
+        </li>
+      </ul>
+
+      <div style="margin-top: 16px;">
+        <div class="staff-card">
+          <div class="staff-name">Danny Mogollon</div>
+          <div class="staff-title">Director, Home Delivery</div>
+          <div class="staff-contact"><a href="mailto:dmogollon@sunsentinel.com">dmogollon@sunsentinel.com</a></div>
         </div>
-
-        <div id="noResultsMsg" class="hidden text-center py-10 border border-dashed border-gray-300 my-4">
-            <i class="fa-solid fa-folder-open text-3xl text-gray-300 mb-2"></i>
-            <p class="font-serif text-base text-darkText font-bold">No matching directory entries found</p>
-            <p class="text-xs text-mutedText mt-1">Try searching for alternative terms like "Editor", "Subscription", "Sports", or "Ads".</p>
-            <button onclick="clearSearchInput()" class="mt-3 px-3 py-1.5 text-xs font-bold bg-brandRed text-white hover:bg-brandRedDark transition-colors">
-                Clear Search Filter
-            </button>
-        </div>
-
-        <section id="customer-service" class="mb-8 searchable-section">
-            <div class="section-header-line mb-3">
-                <h2 class="font-serif font-bold text-lg sm:text-xl uppercase text-darkText flex items-center">
-                    <span class="w-2 h-5 bg-brandRed inline-block mr-2"></span> Customer Service & Subscriptions
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-                <div class="searchable-card bg-newspaperBg p-4 border-l-4 border-brandRed border-y border-r border-borderGray accent-hover-border">
-                    <span class="text-[10px] font-bold text-brandRed tracking-widest uppercase block mb-1">Direct Support</span>
-                    <h3 class="font-serif text-base font-bold text-darkText mb-1">Customer Service Desk</h3>
-                    <p class="text-xs text-mutedText mb-3">Subscriptions, delivery issues, or web/app access:</p>
-                    
-                    <div class="space-y-1.5 text-xs">
-                        <a href="mailto:CustomerService@SunSentinel.com" class="flex items-center text-darkText font-medium hover:text-brandRed transition-colors">
-                            <i class="fa-solid fa-envelope text-brandRed w-5"></i>
-                            <span class="break-all">CustomerService@SunSentinel.com</span>
-                        </a>
-                        <a href="tel:9543752018" class="flex items-center text-darkText font-bold hover:text-brandRed transition-colors">
-                            <i class="fa-solid fa-phone text-brandRed w-5"></i>
-                            <span>954-375-2018</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="searchable-card bg-newspaperBg p-4 border border-borderGray accent-hover-border">
-                    <span class="text-[10px] font-bold text-gray-500 tracking-widest uppercase block mb-1">Circulation</span>
-                    <h3 class="font-serif text-base font-bold text-darkText">Danny Mogollon</h3>
-                    <p class="text-[11px] font-semibold text-brandRed mb-2">Director, Home Delivery</p>
-                    <p class="text-xs text-mutedText mb-3">Home delivery & physical distribution operations.</p>
-                    <a href="mailto:dmogollon@sunsentinel.com" class="inline-flex items-center text-xs font-semibold text-darkText hover:text-brandRed border-b border-darkText hover:border-brandRed transition-colors pb-0.5">
-                        <i class="fa-regular fa-paper-plane mr-1.5"></i> dmogollon@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-newspaperBg p-4 border border-borderGray accent-hover-border flex flex-col justify-between">
-                    <div>
-                        <span class="text-[10px] font-bold text-gray-500 tracking-widest uppercase block mb-1">Help Center</span>
-                        <h3 class="font-serif text-base font-bold text-darkText mb-1">Need Quick Help?</h3>
-                        <p class="text-xs text-mutedText mb-3">Visit our self-service Help Center for account options and FAQs.</p>
-                    </div>
-                    <a href="https://www.sunsentinel.com" target="_blank" rel="noopener noreferrer" class="w-full text-center py-2 bg-darkText text-white text-[11px] font-bold uppercase tracking-wider hover:bg-brandRed transition-colors block">
-                        Visit Help Center <i class="fa-solid fa-arrow-right-long ml-1"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-                <a href="#subscribe" class="searchable-card group p-3 bg-white border border-borderGray hover:border-brandRed transition-all flex items-start space-x-2.5">
-                    <div class="bg-gray-100 group-hover:bg-brandRed group-hover:text-white text-darkText p-2 transition-colors">
-                        <i class="fa-solid fa-newspaper text-sm"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xs text-darkText group-hover:text-brandRed transition-colors">SUBSCRIBE</h4>
-                        <p class="text-[11px] text-mutedText mt-0.5">Unlimited Digital & Home Delivery offers.</p>
-                    </div>
-                </a>
-
-                <a href="#login-guide" class="searchable-card group p-3 bg-white border border-borderGray hover:border-brandRed transition-all flex items-start space-x-2.5">
-                    <div class="bg-gray-100 group-hover:bg-brandRed group-hover:text-white text-darkText p-2 transition-colors">
-                        <i class="fa-solid fa-right-to-bracket text-sm"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xs text-darkText group-hover:text-brandRed transition-colors">LOG IN GUIDE</h4>
-                        <p class="text-[11px] text-mutedText mt-0.5">Log in help and password reset guide.</p>
-                    </div>
-                </a>
-
-                <a href="#enewspaper" class="searchable-card group p-3 bg-white border border-borderGray hover:border-brandRed transition-all flex items-start space-x-2.5">
-                    <div class="bg-gray-100 group-hover:bg-brandRed group-hover:text-white text-darkText p-2 transition-colors">
-                        <i class="fa-solid fa-file-pdf text-sm"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xs text-darkText group-hover:text-brandRed transition-colors">PRINT EDITION (eNewspaper)</h4>
-                        <p class="text-[11px] text-mutedText mt-0.5">Access digital replicas of the print edition.</p>
-                    </div>
-                </a>
-
-                <a href="#subscriber-benefits" class="searchable-card group p-3 bg-white border border-borderGray hover:border-brandRed transition-all flex items-start space-x-2.5">
-                    <div class="bg-gray-100 group-hover:bg-brandRed group-hover:text-white text-darkText p-2 transition-colors">
-                        <i class="fa-solid fa-star text-sm"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-xs text-darkText group-hover:text-brandRed transition-colors">SUBSCRIBER BENEFITS</h4>
-                        <p class="text-[11px] text-mutedText mt-0.5">All features included with digital access.</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <section id="newsroom-leadership" class="mb-8 searchable-section">
-            <div class="section-header-line mb-3">
-                <h2 class="font-serif font-bold text-lg sm:text-xl uppercase text-darkText flex items-center">
-                    <span class="w-2 h-5 bg-brandRed inline-block mr-2"></span> Newsroom Leadership
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-darkText text-white text-[9px] font-bold uppercase tracking-wider mb-1.5">Executive Editor</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">Gretchen Day-Bryant</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Editorial Operations Lead</p>
-                    <a href="mailto:gdaybryant@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> gdaybryant@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-gray-200 text-darkText text-[9px] font-bold uppercase tracking-wider mb-1.5">Managing Editor</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">David Schutz</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Newsroom Operations</p>
-                    <a href="mailto:dschutz@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> dschutz@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-gray-200 text-darkText text-[9px] font-bold uppercase tracking-wider mb-1.5">Assistant Managing Editor</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">Kathy Laskowski</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Breaking News Desk</p>
-                    <a href="mailto:klaskowski@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> klaskowski@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-gray-200 text-darkText text-[9px] font-bold uppercase tracking-wider mb-1.5">Metro News Editor</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">Juan Ortega</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Local & Regional News</p>
-                    <a href="mailto:jortega@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> jortega@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-gray-200 text-darkText text-[9px] font-bold uppercase tracking-wider mb-1.5">Sports Editor</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">Kathy Laughlin</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Florida Regional Sports</p>
-                    <a href="mailto:klaughlin@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> klaughlin@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-gray-200 text-darkText text-[9px] font-bold uppercase tracking-wider mb-1.5">Features & Entertainment</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">Melina I. De Rose</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Features & Culture</p>
-                    <a href="mailto:mderose@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> mderose@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-gray-200 text-darkText text-[9px] font-bold uppercase tracking-wider mb-1.5">Director of Photography</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">Sean Pitts</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Photojournalism & Visuals</p>
-                    <a href="mailto:spitts@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> spitts@sunsentinel.com
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <span class="inline-block px-1.5 py-0.5 bg-gray-200 text-darkText text-[9px] font-bold uppercase tracking-wider mb-1.5">Opinions Editor</span>
-                    <h3 class="font-serif font-bold text-sm text-darkText">Steve Bousquet</h3>
-                    <p class="text-[11px] text-mutedText mb-2">Editorials & Opinion Desk</p>
-                    <a href="mailto:sbousquet@sunsentinel.com" class="text-xs font-semibold text-brandRed hover:underline flex items-center truncate">
-                        <i class="fa-regular fa-envelope mr-1 flex-shrink-0"></i> sbousquet@sunsentinel.com
-                    </a>
-                </div>
-            </div>
-
-            <div class="mt-3 bg-newspaperBg p-3 border border-borderGray flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-                <div>
-                    <h4 class="font-serif font-bold text-xs text-darkText">Looking for a specific staff reporter or columnist?</h4>
-                    <p class="text-[11px] text-mutedText">Browse the full Sun Sentinel staff directory.</p>
-                </div>
-                <a href="https://www.sunsentinel.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-brandRed text-white text-[11px] font-bold uppercase tracking-wider hover:bg-brandRedDark transition-colors flex-shrink-0">
-                    Complete Staff Directory <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
-                </a>
-            </div>
-        </section>
-
-        <section id="advertising" class="mb-8 searchable-section">
-            <div class="section-header-line mb-3">
-                <h2 class="font-serif font-bold text-lg sm:text-xl uppercase text-darkText flex items-center">
-                    <span class="w-2 h-5 bg-brandRed inline-block mr-2"></span> Advertising & Sales
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div class="searchable-card bg-white p-4 border border-borderGray accent-hover-border">
-                    <h3 class="font-serif font-bold text-base text-darkText mb-1">Display & Classified Ads</h3>
-                    <p class="text-xs text-mutedText mb-3">Reach South Florida print and digital readers.</p>
-                    
-                    <div class="space-y-1.5 text-xs border-t border-gray-100 pt-2.5">
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-500">Online & Local Ads:</span>
-                            <a href="tel:8002502000" class="font-bold text-darkText hover:text-brandRed">800-250-2000</a>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-500">Classified Desk:</span>
-                            <a href="tel:8002502000" class="font-bold text-darkText hover:text-brandRed">800-250-2000</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="searchable-card bg-white p-4 border border-borderGray accent-hover-border">
-                    <span class="text-[10px] font-bold text-gray-500 tracking-widest uppercase block mb-1">Advertising Leadership</span>
-                    <h3 class="font-serif font-bold text-base text-darkText">Dave Karabag</h3>
-                    <p class="text-[11px] font-semibold text-brandRed mb-2">Vice President, Advertising</p>
-                    
-                    <div class="space-y-1 text-xs border-t border-gray-100 pt-2.5">
-                        <a href="tel:4074206103" class="flex items-center text-darkText hover:text-brandRed">
-                            <i class="fa-solid fa-phone text-brandRed w-4"></i>
-                            <span>(407) 420-6103</span>
-                        </a>
-                        <a href="mailto:dkarabag@tribpub.com" class="flex items-center text-darkText hover:text-brandRed truncate">
-                            <i class="fa-regular fa-envelope text-brandRed w-4"></i>
-                            <span class="truncate">dkarabag@tribpub.com</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="searchable-card bg-newspaperBg p-4 border border-borderGray flex flex-col justify-between accent-hover-border">
-                    <div>
-                        <span class="text-[10px] font-bold text-brandRed tracking-widest uppercase block mb-1">Self-Service</span>
-                        <h3 class="font-serif font-bold text-base text-darkText mb-1">Place an Ad Online</h3>
-                        <p class="text-xs text-mutedText mb-3">Submit notices, real estate, announcements, or business listings.</p>
-                    </div>
-                    <a href="https://www.sunsentinel.com" target="_blank" rel="noopener noreferrer" class="w-full text-center py-2 bg-brandRed text-white text-[11px] font-bold uppercase tracking-wider hover:bg-brandRedDark transition-colors">
-                        Place an Ad <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="community-engagement" class="mb-8 searchable-section">
-            <div class="section-header-line mb-3">
-                <h2 class="font-serif font-bold text-lg sm:text-xl uppercase text-darkText flex items-center">
-                    <span class="w-2 h-5 bg-brandRed inline-block mr-2"></span> Community & Reader Engagement
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div class="searchable-card bg-white p-4 border border-borderGray accent-hover-border">
-                    <div class="flex items-center space-x-2 mb-1.5">
-                        <i class="fa-solid fa-hand-holding-heart text-brandRed text-base"></i>
-                        <h3 class="font-serif font-bold text-base text-darkText">Support Our Reporting</h3>
-                    </div>
-                    <p class="text-xs text-mutedText mb-3 leading-relaxed">
-                        The <strong>Community News Fund</strong> accepts tax-deductible contributions to support local journalism in South Florida.
-                    </p>
-                    <a href="#community-fund" class="inline-flex items-center text-xs font-bold text-brandRed hover:underline">
-                        How To Contribute &rarr;
-                    </a>
-                </div>
-
-                <div class="searchable-card bg-white p-4 border border-borderGray accent-hover-border">
-                    <div class="flex items-center space-x-2 mb-1.5">
-                        <i class="fa-solid fa-comments text-brandRed text-base"></i>
-                        <h3 class="font-serif font-bold text-base text-darkText">Reader Reaction</h3>
-                    </div>
-                    <p class="text-xs text-mutedText mb-3">
-                        Submit a letter to the editor. Address and phone are required for verification purposes only.
-                    </p>
-                    <div class="space-y-2">
-                        <button onclick="openLetterModal()" class="w-full py-1.5 bg-darkText text-white text-xs font-bold uppercase tracking-wider hover:bg-brandRed transition-colors">
-                            <i class="fa-solid fa-pen-to-square mr-1"></i> Submit Letter Online
-                        </button>
-                        <a href="mailto:letters@sun-sentinel.com" class="block text-center text-xs text-mutedText hover:text-brandRed">
-                            Or email: <span class="underline">letters@sun-sentinel.com</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="searchable-card bg-white p-4 border border-borderGray accent-hover-border">
-                    <div class="flex items-center space-x-2 mb-1.5">
-                        <i class="fa-solid fa-scale-balanced text-brandRed text-base"></i>
-                        <h3 class="font-serif font-bold text-base text-darkText">Corrections Policy</h3>
-                    </div>
-                    <p class="text-xs text-mutedText mb-3 leading-relaxed">
-                        If you believe we’ve made a factual error, please contact our desk:
-                    </p>
-                    <div class="space-y-1 text-xs bg-newspaperBg p-2.5 border border-borderGray">
-                        <a href="mailto:corrections@sun-sentinel.com" class="flex items-center text-darkText font-medium hover:text-brandRed">
-                            <i class="fa-regular fa-envelope text-brandRed w-4"></i>
-                            <span class="truncate">corrections@sun-sentinel.com</span>
-                        </a>
-                        <a href="tel:9543564300" class="flex items-center text-darkText font-bold hover:text-brandRed">
-                            <i class="fa-solid fa-phone text-brandRed w-4"></i>
-                            <span>954-356-4300</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="resources-services" class="mb-8 searchable-section">
-            <div class="section-header-line mb-3">
-                <h2 class="font-serif font-bold text-lg sm:text-xl uppercase text-darkText flex items-center">
-                    <span class="w-2 h-5 bg-brandRed inline-block mr-2"></span> Resources & Services
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <i class="fa-solid fa-camera-retro text-brandRed text-lg mb-1.5"></i>
-                    <h3 class="font-serif font-bold text-sm text-darkText mb-1">Photo Licensing & Reprints</h3>
-                    <p class="text-xs text-mutedText mb-2">Request photo rights, reprints, or back issues.</p>
-                    <a href="#photo-reprints" class="text-xs font-bold text-brandRed hover:underline">Learn More &rarr;</a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <i class="fa-solid fa-envelope-open-text text-brandRed text-lg mb-1.5"></i>
-                    <h3 class="font-serif font-bold text-sm text-darkText mb-1">Premium Newsletters</h3>
-                    <p class="text-xs text-mutedText mb-2">Get local news and sports alerts sent to your inbox.</p>
-                    <a href="#newsletters" class="text-xs font-bold text-brandRed hover:underline">Sign Up &rarr;</a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <i class="fa-solid fa-box-archive text-brandRed text-lg mb-1.5"></i>
-                    <h3 class="font-serif font-bold text-sm text-darkText mb-1">Historical Archives</h3>
-                    <p class="text-xs text-mutedText mb-2">Search the Sun Sentinel archives by date.</p>
-                    <a href="#archives" class="text-xs font-bold text-brandRed hover:underline">Browse Archives &rarr;</a>
-                </div>
-
-                <div class="searchable-card bg-white p-3.5 border border-borderGray accent-hover-border">
-                    <i class="fa-solid fa-users text-brandRed text-lg mb-1.5"></i>
-                    <h3 class="font-serif font-bold text-sm text-darkText mb-1">Diversity & Inclusion</h3>
-                    <p class="text-xs text-mutedText mb-2">Our commitment to representative journalism.</p>
-                    <a href="#diversity" class="text-xs font-bold text-brandRed hover:underline">Read Policy &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <footer class="pt-4 border-t-2 border-darkText bg-newspaperBg p-4 text-darkText text-xs">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <span class="font-serif font-bold text-sm uppercase block mb-1">
-                        South Florida Sun Sentinel Headquarters
-                    </span>
-                    <p class="text-mutedText leading-relaxed">
-                        333 SW 12th Ave., Deerfield Beach, FL 33442 &bull; 
-                        <strong>Main Phone:</strong> <a href="tel:9543564000" class="font-bold text-darkText hover:text-brandRed">954-356-4000</a>
-                    </p>
-                </div>
-                <div class="text-[11px] text-mutedText">
-                    &copy; <span id="currentYear"></span> Sun Sentinel &bull; Tribune Publishing
-                </div>
-            </div>
-        </footer>
-
+      </div>
     </div>
 
-    <div id="letterModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3">
-        <div class="bg-white border-2 border-darkText max-w-lg w-full p-5 relative shadow-2xl">
-            <button onclick="closeLetterModal()" class="absolute top-3 right-3 text-gray-500 hover:text-brandRed text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+    <!-- ADVERTISING -->
+    <div class="card col-half searchable-item" id="advertising">
+      <div class="card-title">
+        <span>Advertising</span>
+      </div>
+      <p>Reach South Florida's largest audience online and in print.</p>
+      <p><strong>Online & Local Ads:</strong> <a href="tel:8002502000">800-250-2000</a></p>
+      <p><strong>Classified Line:</strong> <a href="tel:8002502000">800-250-2000</a></p>
 
-            <div class="border-b border-borderGray pb-2 mb-3">
-                <h3 class="font-serif font-bold text-lg text-darkText uppercase">
-                    Submit a Letter to the Editor
-                </h3>
-            </div>
+      <div class="btn-group">
+        <a href="http://placeanad.sun-sentinel.com/" target="_blank" class="btn btn-primary">Place an Ad</a>
+      </div>
 
-            <form id="letterForm" onsubmit="handleLetterSubmit(event)" class="space-y-3">
-                <div>
-                    <label class="block text-[11px] font-bold uppercase text-darkText mb-1">Full Name *</label>
-                    <input type="text" required placeholder="Jane Doe" class="w-full p-2 text-xs bg-newspaperBg border border-borderGray focus:border-brandRed focus:outline-none">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase text-darkText mb-1">Email Address *</label>
-                        <input type="email" required placeholder="jane@example.com" class="w-full p-2 text-xs bg-newspaperBg border border-borderGray focus:border-brandRed focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase text-darkText mb-1">Phone Number *</label>
-                        <input type="tel" required placeholder="954-000-0000" class="w-full p-2 text-xs bg-newspaperBg border border-borderGray focus:border-brandRed focus:outline-none">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-[11px] font-bold uppercase text-darkText mb-1">Mailing Address (For Verification) *</label>
-                    <input type="text" required placeholder="123 Main St, Fort Lauderdale, FL" class="w-full p-2 text-xs bg-newspaperBg border border-borderGray focus:border-brandRed focus:outline-none">
-                    <span class="text-[10px] text-gray-500 italic block mt-0.5">Address and phone number are for verification only and will not be published.</span>
-                </div>
-
-                <div>
-                    <label class="block text-[11px] font-bold uppercase text-darkText mb-1">Letter Content *</label>
-                    <textarea rows="3" required placeholder="Type your letter here (The Sun Sentinel reserves the right to edit letters)..." class="w-full p-2 text-xs bg-newspaperBg border border-borderGray focus:border-brandRed focus:outline-none"></textarea>
-                </div>
-
-                <div class="flex justify-end space-x-2 pt-1">
-                    <button type="button" onclick="closeLetterModal()" class="px-3 py-1.5 border border-darkText text-xs font-bold uppercase hover:bg-gray-100">
-                        Cancel
-                    </button>
-                    <button type="submit" class="px-4 py-1.5 bg-brandRed text-white text-xs font-bold uppercase tracking-wider hover:bg-brandRedDark transition-colors">
-                        Send Letter
-                    </button>
-                </div>
-            </form>
-
-            <div id="modalSuccess" class="hidden text-center py-6 space-y-2">
-                <i class="fa-solid fa-circle-check text-3xl text-green-600"></i>
-                <h4 class="font-serif font-bold text-base text-darkText">Letter Submitted Successfully</h4>
-                <p class="text-xs text-mutedText">Thank you for sharing your view with the Sun Sentinel editorial board.</p>
-                <button onclick="closeLetterModal()" class="px-3 py-1.5 bg-darkText text-white text-xs font-bold uppercase">
-                    Close Window
-                </button>
-            </div>
+      <div style="margin-top: 20px;">
+        <div class="staff-card">
+          <div class="staff-name">Dave Karabag</div>
+          <div class="staff-title">Vice President, Advertising</div>
+          <div class="staff-contact">
+            Phone: <a href="tel:4074206103">(407) 420-6103</a><br>
+            Email: <a href="mailto:dkarabag@tribpub.com">dkarabag@tribpub.com</a>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    <!-- NEWSROOM LEADERSHIP -->
+    <div class="card col-full searchable-item" id="newsroom">
+      <div class="card-title">
+        <span>Newsroom Leadership</span>
+      </div>
+      <p>Contact editors and department leads directly:</p>
 
-        function filterDirectory() {
-            const query = document.getElementById('directorySearch').value.toLowerCase().trim();
-            const clearBtn = document.getElementById('clearSearch');
-            const cards = document.querySelectorAll('.searchable-card');
-            let visibleCount = 0;
+      <div class="staff-grid">
+        <div class="staff-card">
+          <div class="staff-name">Gretchen Day-Bryant</div>
+          <div class="staff-title">Executive Editor</div>
+          <div class="staff-contact"><a href="mailto:gdaybryant@sunsentinel.com">gdaybryant@sunsentinel.com</a></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">David Schutz</div>
+          <div class="staff-title">Managing Editor</div>
+          <div class="staff-contact"><a href="mailto:dschutz@sunsentinel.com">dschutz@sunsentinel.com</a></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Kathy Laskowski</div>
+          <div class="staff-title">Asst. Managing Editor / Breaking</div>
+          <div class="staff-contact"><a href="mailto:klaskowski@sunsentinel.com">klaskowski@sunsentinel.com</a></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Juan Ortega</div>
+          <div class="staff-title">Metro News Editor</div>
+          <div class="staff-contact"><a href="mailto:jortega@sunsentinel.com">jortega@sunsentinel.com</a></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Kathy Laughlin</div>
+          <div class="staff-title">FL Regional Sports Editor</div>
+          <div class="staff-contact"><a href="mailto:klaughlin@sunsentinel.com">klaughlin@sunsentinel.com</a></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Melina I. De Rose</div>
+          <div class="staff-title">Features & Entertainment Editor</div>
+          <div class="staff-contact"><a href="mailto:mderose@sunsentinel.com">mderose@sunsentinel.com</a></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Sean Pitts</div>
+          <div class="staff-title">Director of Photography</div>
+          <div class="staff-contact"><a href="mailto:spitts@sunsentinel.com">spitts@sunsentinel.com</a></div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-name">Steve Bousquet</div>
+          <div class="staff-title">Opinions Editor</div>
+          <div class="staff-contact"><a href="mailto:sbousquet@sunsentinel.com">sbousquet@sunsentinel.com</a></div>
+        </div>
+      </div>
 
-            if (query.length > 0) {
-                clearBtn.classList.remove('hidden');
-            } else {
-                clearBtn.classList.add('hidden');
-            }
+      <div class="btn-group" style="margin-top: 16px;">
+        <a href="https://www.sun-sentinel.com/contact-us/" target="_blank" class="btn btn-outline">Complete Staff Directory</a>
+      </div>
+    </div>
 
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if (text.includes(query)) {
-                    card.classList.remove('hidden-card');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden-card');
-                }
-            });
+    <!-- COMMUNITY, CORRECTIONS & LETTERS -->
+    <div class="card col-third searchable-item">
+      <div class="card-title">
+        <span>Support Our Reporting</span>
+      </div>
+      <p>The Sun Sentinel launched its Community News Fund to receive tax-deductible contributions to support local journalism.</p>
+      <a href="https://supportfloridajournalism.com/newspaper/south-florida-sun-sentinel/" target="_blank">&rarr; Here's how you can help</a>
+    </div>
 
-            const noResults = document.getElementById('noResultsMsg');
-            if (visibleCount === 0 && query !== '') {
-                noResults.classList.remove('hidden');
-            } else {
-                noResults.classList.add('hidden');
-            }
+    <div class="card col-third searchable-item">
+      <div class="card-title">
+        <span>Reader Reaction</span>
+      </div>
+      <p>Submit letters to the editor for publication consideration.</p>
+      <p><strong>Email:</strong> <a href="mailto:letters@sun-sentinel.com">letters@sun-sentinel.com</a></p>
+      <div class="btn-group">
+        <button class="btn btn-outline" onclick="openModal()">Submit Letter Online</button>
+      </div>
+    </div>
+
+    <div class="card col-third searchable-item">
+      <div class="card-title">
+        <span>Corrections Policy</span>
+      </div>
+      <p>We strive to be fair and accurate. If you spot a factual error:</p>
+      <p><strong>Email:</strong> <a href="mailto:corrections@sun-sentinel.com">corrections@sun-sentinel.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:9543564300">954-356-4300</a></p>
+    </div>
+
+    <!-- ADDITIONAL RESOURCES -->
+    <div class="card col-full searchable-item" id="resources">
+      <div class="card-title">
+        <span>Resources, Archives & Corporate Info</span>
+      </div>
+      <div class="grid-layout">
+        <div class="col-fourth" style="grid-column: span 3;">
+          <strong style="display:block; margin-bottom:4px;">Photo & Licensing</strong>
+          <p>Request content permissions or purchase reprints and photos.</p>
+          <a href="https://www.sun-sentinel.com/photo-requests/" target="_blank">&rarr; Licensing Portal</a>
+        </div>
+        <div class="col-fourth" style="grid-column: span 3;">
+          <strong style="display:block; margin-bottom:4px;">Newsletters</strong>
+          <p>Sign up for curated email newsletters and daily briefings.</p>
+          <a href="https://myaccount.sun-sentinel.com/4sunsent/preference?categories=38,39,40,41,42,43,1" target="_blank">&rarr; Membership Preferences</a>
+        </div>
+        <div class="col-fourth" style="grid-column: span 3;">
+          <strong style="display:block; margin-bottom:4px;">Archives</strong>
+          <p>Browse historic Sun Sentinel archives by date.</p>
+          <a href="https://sun-sentinel.newspapers.com/?xid=1247" target="_blank">&rarr; Search Archives</a>
+        </div>
+        <div class="col-fourth" style="grid-column: span 3;">
+          <strong style="display:block; margin-bottom:4px;">Main HQ & Phone</strong>
+          <p>333 SW 12th Ave.<br>Deerfield Beach, FL 33442</p>
+          <p><strong>Main Line:</strong> <a href="tel:9543564000">954-356-4000</a></p>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+        <strong style="font-size:0.85rem; text-transform:uppercase;">Diversity & Inclusion Statement</strong>
+        <p style="font-size: 0.85rem; color: var(--gray-mid); margin-top: 4px;">
+          The Sun Sentinel and Tribune Publishing are committed to engaging new audiences by providing journalism and products that serve our increasingly diverse communities.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Info -->
+  <div class="directory-footer">
+    <div>&copy; South Florida Sun Sentinel &bull; Tribune Publishing</div>
+    <div>Deerfield Beach, FL</div>
+  </div>
+
+  <!-- Letter Submission Modal -->
+  <div class="modal-overlay" id="letterModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">Submit a Letter to the Editor</div>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <p style="font-size: 0.8rem; margin-bottom: 12px; color: var(--gray-mid);">
+        Letters must include full name, address, and phone number for verification purposes only. The Sun Sentinel reserves the right to edit letters.
+      </p>
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number (Verification only) *</label>
+          <input type="tel" required>
+        </div>
+        <div class="form-group">
+          <label>Street Address & City *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Your Letter *</label>
+          <textarea required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Letter</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Live Search Filter
+    function filterDirectory() {
+      const input = document.getElementById('directorySearch').value.toLowerCase();
+      const items = document.querySelectorAll('.searchable-item');
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(input)) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
         }
+      });
+    }
 
-        function clearSearchInput() {
-            const searchInput = document.getElementById('directorySearch');
-            searchInput.value = '';
-            filterDirectory();
-            searchInput.focus();
-        }
+    // Modal Operations
+    function openModal() {
+      document.getElementById('letterModal').classList.add('active');
+    }
 
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
+    function closeModal() {
+      document.getElementById('letterModal').classList.remove('active');
+    }
 
-        function openLetterModal() {
-            document.getElementById('letterModal').classList.remove('hidden');
-            document.getElementById('letterForm').classList.remove('hidden');
-            document.getElementById('modalSuccess').classList.add('hidden');
-        }
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for submitting your letter to the Sun Sentinel editorial team.');
+      closeModal();
+    }
+  </script>
 
-        function closeLetterModal() {
-            document.getElementById('letterModal').classList.add('hidden');
-        }
-
-        function handleLetterSubmit(event) {
-            event.preventDefault();
-            document.getElementById('letterForm').classList.add('hidden');
-            document.getElementById('modalSuccess').classList.remove('hidden');
-            document.getElementById('letterForm').reset();
-        }
-    </script>
 </body>
 </html>
