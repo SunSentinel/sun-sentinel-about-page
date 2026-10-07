@@ -7,7 +7,7 @@
   <!-- Google Fonts: Noto Serif & Noto Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -22,11 +22,7 @@
       --font-sans: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: var(--font-sans);
@@ -37,52 +33,23 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Quick Filter & Quick Links Bar */
+    /* Toolbar Navigation */
     .toolbar {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding-bottom: 16px;
       margin-bottom: 20px;
       border-bottom: 2px solid var(--black);
     }
 
-    .search-box {
-      position: relative;
-      flex: 1 1 280px;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 10px 14px 10px 36px;
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      border: 1px solid #CCC;
-      border-radius: 4px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .search-box input:focus {
-      border-color: var(--primary-red);
-    }
-
-    .search-box svg {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      fill: var(--gray-mid);
-      width: 16px;
-      height: 16px;
-    }
-
     .quick-nav {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      justify-content: center;
     }
 
     .quick-nav a {
@@ -95,7 +62,6 @@
       padding: 6px 12px;
       background: var(--gray-light);
       border-radius: 4px;
-      transition: background 0.2s, color 0.2s;
     }
 
     .quick-nav a:hover {
@@ -103,7 +69,7 @@
       color: #FFF;
     }
 
-    /* Grid Layout */
+    /* Main Grid */
     .grid-layout {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -114,11 +80,11 @@
     .col-half { grid-column: span 6; }
     .col-third { grid-column: span 4; }
 
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
       .col-half, .col-third { grid-column: span 12; }
     }
 
-    /* Section Cards */
+    /* Cards */
     .card {
       border: 1px solid var(--border-color);
       border-top: 4px solid var(--black);
@@ -126,9 +92,7 @@
       background: #FFFFFF;
     }
 
-    .card.highlight {
-      border-top-color: var(--primary-red);
-    }
+    .card.highlight { border-top-color: var(--primary-red); }
 
     .card-title {
       font-family: var(--font-serif);
@@ -143,10 +107,7 @@
       align-items: center;
     }
 
-    .card-title-icon {
-      color: var(--primary-red);
-      font-size: 1rem;
-    }
+    .card-title-icon { color: var(--primary-red); font-size: 1rem; }
 
     p, li {
       font-size: 0.9rem;
@@ -160,11 +121,9 @@
       font-weight: 600;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
 
-    /* Action Buttons */
+    /* Buttons */
     .btn-group {
       display: flex;
       flex-wrap: wrap;
@@ -182,69 +141,26 @@
       text-decoration: none !important;
       border-radius: 3px;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
-    .btn-primary {
-      background: var(--primary-red);
-      color: #FFFFFF !important;
-      border: none;
-    }
+    .btn-primary { background: var(--primary-red); color: #FFFFFF !important; border: none; }
+    .btn-primary:hover { background: var(--dark-red); }
 
-    .btn-primary:hover {
-      background: var(--dark-red);
-    }
+    .btn-outline { background: transparent; color: var(--black) !important; border: 1px solid var(--black); }
+    .btn-outline:hover { background: var(--black); color: #FFFFFF !important; }
 
-    .btn-outline {
-      background: transparent;
-      color: var(--black) !important;
-      border: 1px solid var(--black);
-    }
+    /* Guide Links */
+    .guide-list { list-style: none; margin-top: 10px; }
+    .guide-list li { padding: 8px 0; border-bottom: 1px dashed var(--border-color); }
+    .guide-list li:last-child { border-bottom: none; }
+    .guide-list a { display: block; font-family: var(--font-serif); font-size: 0.95rem; color: var(--black); }
+    .guide-list a:hover { color: var(--primary-red); }
+    .guide-list span { display: block; font-family: var(--font-sans); font-size: 0.82rem; color: var(--gray-mid); font-weight: normal; margin-top: 2px; }
 
-    .btn-outline:hover {
-      background: var(--black);
-      color: #FFFFFF !important;
-    }
-
-    /* Guide Links List */
-    .guide-list {
-      list-style: none;
-      margin-top: 10px;
-    }
-
-    .guide-list li {
-      padding: 8px 0;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    .guide-list li:last-child {
-      border-bottom: none;
-    }
-
-    .guide-list a {
-      display: block;
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      color: var(--black);
-    }
-
-    .guide-list a:hover {
-      color: var(--primary-red);
-    }
-
-    .guide-list span {
-      display: block;
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      color: var(--gray-mid);
-      font-weight: normal;
-      margin-top: 2px;
-    }
-
-    /* Staff Directory Cards */
+    /* Staff Directory */
     .staff-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 12px;
       margin-top: 12px;
     }
@@ -255,48 +171,35 @@
       border-left: 3px solid var(--black);
     }
 
-    .staff-name {
-      font-family: var(--font-serif);
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--black);
+    .staff-name { font-family: var(--font-serif); font-weight: 700; font-size: 0.95rem; color: var(--black); }
+    .staff-title { font-size: 0.78rem; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .staff-contact { font-size: 0.8rem; word-break: break-all; }
+
+    /* Simplified Resources Flex Box */
+    .resources-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
-    .staff-title {
-      font-size: 0.78rem;
-      color: var(--gray-mid);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .staff-contact {
-      font-size: 0.8rem;
-      word-break: break-all;
+    .resources-item {
+      flex: 1 1 200px;
+      min-width: 180px;
     }
 
     /* Modal Styling */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.6);
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
       z-index: 1000;
       padding: 16px;
     }
 
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .modal-overlay.active { display: flex; }
 
     .modal-container {
       background: #FFF;
@@ -304,55 +207,16 @@
       max-width: 500px;
       padding: 24px;
       border-top: 4px solid var(--primary-red);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .modal-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gray-mid); }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #CCC; font-family: var(--font-sans); font-size: 0.85rem; }
+    .form-group textarea { height: 90px; resize: vertical; }
 
-    .modal-title {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--gray-mid);
-    }
-
-    .form-group {
-      margin-bottom: 12px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #CCC;
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-    }
-
-    .form-group textarea {
-      height: 90px;
-      resize: vertical;
-    }
-
-    /* Footer Meta Info */
     .directory-footer {
       margin-top: 24px;
       padding-top: 16px;
@@ -368,12 +232,8 @@
 </head>
 <body>
 
-  <!-- Search & Navigation -->
+  <!-- Navigation Bar -->
   <div class="toolbar">
-    <div class="search-box">
-      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-      <input type="text" id="directorySearch" placeholder="Search contact, name, department..." onkeyup="filterDirectory()">
-    </div>
     <div class="quick-nav">
       <a href="#customer-service">Customer Service</a>
       <a href="#advertising">Advertising</a>
@@ -385,7 +245,7 @@
   <div class="grid-layout">
 
     <!-- CUSTOMER SERVICE & SUBSCRIPTIONS -->
-    <div class="card col-half highlight searchable-item" id="customer-service">
+    <div class="card col-half highlight" id="customer-service">
       <div class="card-title">
         <span>Customer Service & Subscriptions</span>
         <span class="card-title-icon">&#9733;</span>
@@ -428,7 +288,7 @@
     </div>
 
     <!-- ADVERTISING -->
-    <div class="card col-half searchable-item" id="advertising">
+    <div class="card col-half" id="advertising">
       <div class="card-title">
         <span>Advertising</span>
       </div>
@@ -453,7 +313,7 @@
     </div>
 
     <!-- NEWSROOM LEADERSHIP -->
-    <div class="card col-full searchable-item" id="newsroom">
+    <div class="card col-full" id="newsroom">
       <div class="card-title">
         <span>Newsroom Leadership</span>
       </div>
@@ -508,18 +368,14 @@
     </div>
 
     <!-- COMMUNITY, CORRECTIONS & LETTERS -->
-    <div class="card col-third searchable-item">
-      <div class="card-title">
-        <span>Support Our Reporting</span>
-      </div>
+    <div class="card col-third">
+      <div class="card-title"><span>Support Our Reporting</span></div>
       <p>The Sun Sentinel launched its Community News Fund to receive tax-deductible contributions to support local journalism.</p>
       <a href="https://supportfloridajournalism.com/newspaper/south-florida-sun-sentinel/" target="_blank">&rarr; Here's how you can help</a>
     </div>
 
-    <div class="card col-third searchable-item">
-      <div class="card-title">
-        <span>Reader Reaction</span>
-      </div>
+    <div class="card col-third">
+      <div class="card-title"><span>Reader Reaction</span></div>
       <p>Submit letters to the editor for publication consideration.</p>
       <p><strong>Email:</strong> <a href="mailto:letters@sun-sentinel.com">letters@sun-sentinel.com</a></p>
       <div class="btn-group">
@@ -527,37 +383,35 @@
       </div>
     </div>
 
-    <div class="card col-third searchable-item">
-      <div class="card-title">
-        <span>Corrections Policy</span>
-      </div>
+    <div class="card col-third">
+      <div class="card-title"><span>Corrections Policy</span></div>
       <p>We strive to be fair and accurate. If you spot a factual error:</p>
       <p><strong>Email:</strong> <a href="mailto:corrections@sun-sentinel.com">corrections@sun-sentinel.com</a></p>
       <p><strong>Phone:</strong> <a href="tel:9543564300">954-356-4300</a></p>
     </div>
 
     <!-- ADDITIONAL RESOURCES -->
-    <div class="card col-full searchable-item" id="resources">
+    <div class="card col-full" id="resources">
       <div class="card-title">
         <span>Resources, Archives & Corporate Info</span>
       </div>
-      <div class="grid-layout">
-        <div class="col-fourth" style="grid-column: span 3;">
+      <div class="resources-flex">
+        <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Photo & Licensing</strong>
           <p>Request content permissions or purchase reprints and photos.</p>
           <a href="https://www.sun-sentinel.com/photo-requests/" target="_blank">&rarr; Licensing Portal</a>
         </div>
-        <div class="col-fourth" style="grid-column: span 3;">
+        <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Newsletters</strong>
           <p>Sign up for curated email newsletters and daily briefings.</p>
           <a href="https://myaccount.sun-sentinel.com/4sunsent/preference?categories=38,39,40,41,42,43,1" target="_blank">&rarr; Membership Preferences</a>
         </div>
-        <div class="col-fourth" style="grid-column: span 3;">
+        <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Archives</strong>
           <p>Browse historic Sun Sentinel archives by date.</p>
           <a href="https://sun-sentinel.newspapers.com/?xid=1247" target="_blank">&rarr; Search Archives</a>
         </div>
-        <div class="col-fourth" style="grid-column: span 3;">
+        <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Main HQ & Phone</strong>
           <p>333 SW 12th Ave.<br>Deerfield Beach, FL 33442</p>
           <p><strong>Main Line:</strong> <a href="tel:9543564000">954-356-4000</a></p>
@@ -574,7 +428,6 @@
 
   </div>
 
-  <!-- Footer Info -->
   <div class="directory-footer">
     <div>&copy; South Florida Sun Sentinel &bull; Tribune Publishing</div>
     <div>Deerfield Beach, FL</div>
@@ -585,4 +438,46 @@
     <div class="modal-container">
       <div class="modal-header">
         <div class="modal-title">Submit a Letter to the Editor</div>
-        <button class="modal-close" onclick="closeModal()">&times
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <p style="font-size: 0.8rem; margin-bottom: 12px; color: var(--gray-mid);">
+        Letters must include full name, address, and phone number for verification purposes only. The Sun Sentinel reserves the right to edit letters.
+      </p>
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number (Verification only) *</label>
+          <input type="tel" required>
+        </div>
+        <div class="form-group">
+          <label>Street Address & City *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Your Letter *</label>
+          <textarea required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Letter</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal() { document.getElementById('letterModal').classList.add('active'); }
+    function closeModal() { document.getElementById('letterModal').classList.remove('active'); }
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for submitting your letter to the Sun Sentinel editorial team.');
+      closeModal();
+    }
+  </script>
+
+</body>
+</html>
