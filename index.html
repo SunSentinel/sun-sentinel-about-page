@@ -123,6 +123,40 @@
 
     a:hover { text-decoration: underline; }
 
+    /* Email & Copy Button Wrapper */
+    .email-wrap {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .copy-btn {
+      background: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      color: var(--gray-dark);
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: all 0.15s ease;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--black);
+      color: var(--black);
+    }
+
+    .copy-btn.copied {
+      background: var(--black);
+      border-color: var(--black);
+      color: #FFFFFF;
+    }
+
     /* Buttons */
     .btn-group {
       display: flex;
@@ -160,7 +194,7 @@
     /* Staff Directory */
     .staff-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 12px;
       margin-top: 12px;
     }
@@ -173,7 +207,7 @@
 
     .staff-name { font-family: var(--font-serif); font-weight: 700; font-size: 0.95rem; color: var(--black); }
     .staff-title { font-size: 0.78rem; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-    .staff-contact { font-size: 0.8rem; word-break: break-all; }
+    .staff-contact { font-size: 0.8rem; word-break: break-word; }
 
     /* Simplified Resources Flex Box */
     .resources-flex {
@@ -251,29 +285,35 @@
         <span class="card-title-icon">&#9733;</span>
       </div>
       <p>For customer service, subscription/delivery issues, or site/app help:</p>
-      <p><strong>Email:</strong> <a href="mailto:CustomerService@SunSentinel.com">CustomerService@SunSentinel.com</a></p>
-      <p><strong>Phone:</strong> <a href="tel:9543752018">954-375-2018</a></p>
+      <p>
+        <strong>Email:</strong>
+        <span class="email-wrap">
+          <a href="mailto:CustomerService@SunSentinel.com" target="_blank" rel="noopener noreferrer">CustomerService@SunSentinel.com</a>
+          <button type="button" class="copy-btn" onclick="copyEmail('CustomerService@SunSentinel.com', this)">Copy</button>
+        </span>
+      </p>
+      <p><strong>Phone:</strong> <a href="tel:9543752018" target="_blank" rel="noopener noreferrer">954-375-2018</a></p>
 
       <div class="btn-group">
-        <a href="https://mktops.sun-sentinel.com/subscriptions/land-premium/?market=ss&source=index&g2i_source=SB&g2i_medium=contact-us&g2i_campaign=BAU-6-months-1" target="_blank" class="btn btn-primary">Subscribe Now</a>
-        <a href="https://www.sun-sentinel.com/help-center/" target="_blank" class="btn btn-outline">Help Center</a>
+        <a href="https://mktops.sun-sentinel.com/subscriptions/land-premium/?market=ss&source=index&g2i_source=SB&g2i_medium=contact-us&g2i_campaign=BAU-6-months-1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Subscribe Now</a>
+        <a href="https://www.sun-sentinel.com/help-center/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Help Center</a>
       </div>
 
       <ul class="guide-list">
         <li>
-          <a href="https://www.sun-sentinel.com/subscription-help/" target="_blank">How to Log Into Your Subscription &rsaquo;</a>
+          <a href="https://www.sun-sentinel.com/subscription-help/" target="_blank" rel="noopener noreferrer">How to Log Into Your Subscription &rsaquo;</a>
           <span>Guide on logging in and password recovery options.</span>
         </li>
         <li>
-          <a href="https://www.sun-sentinel.com/enewspaper-help/" target="_blank">Access the Print Edition Online &rsaquo;</a>
+          <a href="https://www.sun-sentinel.com/enewspaper-help/" target="_blank" rel="noopener noreferrer">Access the Print Edition Online &rsaquo;</a>
           <span>Guide on accessing eNewspapers for digital & print subscribers.</span>
         </li>
         <li>
-          <a href="https://www.sun-sentinel.com/subscription-help/" target="_blank">Activate Your Digital Subscription &rsaquo;</a>
+          <a href="https://www.sun-sentinel.com/subscription-help/" target="_blank" rel="noopener noreferrer">Activate Your Digital Subscription &rsaquo;</a>
           <span>Instructions on activating unlimited access to SunSentinel.com.</span>
         </li>
         <li>
-          <a href="https://www.sun-sentinel.com/subscriber-benefits/" target="_blank">Subscriber Benefits &rsaquo;</a>
+          <a href="https://www.sun-sentinel.com/subscriber-benefits/" target="_blank" rel="noopener noreferrer">Subscriber Benefits &rsaquo;</a>
           <span>Explore all the perks included with your digital membership.</span>
         </li>
       </ul>
@@ -282,7 +322,12 @@
         <div class="staff-card">
           <div class="staff-name">Danny Mogollon</div>
           <div class="staff-title">Director, Home Delivery</div>
-          <div class="staff-contact"><a href="mailto:dmogollon@sunsentinel.com">dmogollon@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:dmogollon@sunsentinel.com" target="_blank" rel="noopener noreferrer">dmogollon@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('dmogollon@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -293,11 +338,11 @@
         <span>Advertising</span>
       </div>
       <p>Reach South Florida's largest audience online and in print.</p>
-      <p><strong>Online & Local Ads:</strong> <a href="tel:8002502000">800-250-2000</a></p>
-      <p><strong>Classified Line:</strong> <a href="tel:8002502000">800-250-2000</a></p>
+      <p><strong>Online & Local Ads:</strong> <a href="tel:8002502000" target="_blank" rel="noopener noreferrer">800-250-2000</a></p>
+      <p><strong>Classified Line:</strong> <a href="tel:8002502000" target="_blank" rel="noopener noreferrer">800-250-2000</a></p>
 
       <div class="btn-group">
-        <a href="http://placeanad.sun-sentinel.com/" target="_blank" class="btn btn-primary">Place an Ad</a>
+        <a href="http://placeanad.sun-sentinel.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Place an Ad</a>
       </div>
 
       <div style="margin-top: 20px;">
@@ -305,8 +350,12 @@
           <div class="staff-name">Dave Karabag</div>
           <div class="staff-title">Vice President, Advertising</div>
           <div class="staff-contact">
-            Phone: <a href="tel:4074206103">(407) 420-6103</a><br>
-            Email: <a href="mailto:dkarabag@tribpub.com">dkarabag@tribpub.com</a>
+            Phone: <a href="tel:4074206103" target="_blank" rel="noopener noreferrer">(407) 420-6103</a><br>
+            Email: 
+            <span class="email-wrap">
+              <a href="mailto:dkarabag@tribpub.com" target="_blank" rel="noopener noreferrer">dkarabag@tribpub.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('dkarabag@tribpub.com', this)">Copy</button>
+            </span>
           </div>
         </div>
       </div>
@@ -323,47 +372,87 @@
         <div class="staff-card">
           <div class="staff-name">Gretchen Day-Bryant</div>
           <div class="staff-title">Executive Editor</div>
-          <div class="staff-contact"><a href="mailto:gdaybryant@sunsentinel.com">gdaybryant@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:gdaybryant@sunsentinel.com" target="_blank" rel="noopener noreferrer">gdaybryant@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('gdaybryant@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
         <div class="staff-card">
           <div class="staff-name">David Schutz</div>
           <div class="staff-title">Managing Editor</div>
-          <div class="staff-contact"><a href="mailto:dschutz@sunsentinel.com">dschutz@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:dschutz@sunsentinel.com" target="_blank" rel="noopener noreferrer">dschutz@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('dschutz@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
         <div class="staff-card">
           <div class="staff-name">Kathy Laskowski</div>
           <div class="staff-title">Asst. Managing Editor / Breaking</div>
-          <div class="staff-contact"><a href="mailto:klaskowski@sunsentinel.com">klaskowski@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:klaskowski@sunsentinel.com" target="_blank" rel="noopener noreferrer">klaskowski@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('klaskowski@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
         <div class="staff-card">
           <div class="staff-name">Juan Ortega</div>
           <div class="staff-title">Metro News Editor</div>
-          <div class="staff-contact"><a href="mailto:jortega@sunsentinel.com">jortega@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:jortega@sunsentinel.com" target="_blank" rel="noopener noreferrer">jortega@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('jortega@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
         <div class="staff-card">
           <div class="staff-name">Kathy Laughlin</div>
           <div class="staff-title">FL Regional Sports Editor</div>
-          <div class="staff-contact"><a href="mailto:klaughlin@sunsentinel.com">klaughlin@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:klaughlin@sunsentinel.com" target="_blank" rel="noopener noreferrer">klaughlin@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('klaughlin@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
         <div class="staff-card">
           <div class="staff-name">Melina I. De Rose</div>
           <div class="staff-title">Features & Entertainment Editor</div>
-          <div class="staff-contact"><a href="mailto:mderose@sunsentinel.com">mderose@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:mderose@sunsentinel.com" target="_blank" rel="noopener noreferrer">mderose@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('mderose@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
         <div class="staff-card">
           <div class="staff-name">Sean Pitts</div>
           <div class="staff-title">Director of Photography</div>
-          <div class="staff-contact"><a href="mailto:spitts@sunsentinel.com">spitts@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:spitts@sunsentinel.com" target="_blank" rel="noopener noreferrer">spitts@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('spitts@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
         <div class="staff-card">
           <div class="staff-name">Steve Bousquet</div>
           <div class="staff-title">Opinions Editor</div>
-          <div class="staff-contact"><a href="mailto:sbousquet@sunsentinel.com">sbousquet@sunsentinel.com</a></div>
+          <div class="staff-contact">
+            <span class="email-wrap">
+              <a href="mailto:sbousquet@sunsentinel.com" target="_blank" rel="noopener noreferrer">sbousquet@sunsentinel.com</a>
+              <button type="button" class="copy-btn" onclick="copyEmail('sbousquet@sunsentinel.com', this)">Copy</button>
+            </span>
+          </div>
         </div>
       </div>
 
       <div class="btn-group" style="margin-top: 16px;">
-        <a href="https://www.sun-sentinel.com/contact-us/" target="_blank" class="btn btn-outline">Complete Staff Directory</a>
+        <a href="https://www.sun-sentinel.com/contact-us/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Complete Staff Directory</a>
       </div>
     </div>
 
@@ -371,13 +460,19 @@
     <div class="card col-third">
       <div class="card-title"><span>Support Our Reporting</span></div>
       <p>The Sun Sentinel launched its Community News Fund to receive tax-deductible contributions to support local journalism.</p>
-      <a href="https://supportfloridajournalism.com/newspaper/south-florida-sun-sentinel/" target="_blank">&rarr; Here's how you can help</a>
+      <a href="https://supportfloridajournalism.com/newspaper/south-florida-sun-sentinel/" target="_blank" rel="noopener noreferrer">&rarr; Here's how you can help</a>
     </div>
 
     <div class="card col-third">
       <div class="card-title"><span>Reader Reaction</span></div>
       <p>Submit letters to the editor for publication consideration.</p>
-      <p><strong>Email:</strong> <a href="mailto:letters@sun-sentinel.com">letters@sun-sentinel.com</a></p>
+      <p>
+        <strong>Email:</strong>
+        <span class="email-wrap">
+          <a href="mailto:letters@sun-sentinel.com" target="_blank" rel="noopener noreferrer">letters@sun-sentinel.com</a>
+          <button type="button" class="copy-btn" onclick="copyEmail('letters@sun-sentinel.com', this)">Copy</button>
+        </span>
+      </p>
       <div class="btn-group">
         <button class="btn btn-outline" onclick="openModal()">Submit Letter Online</button>
       </div>
@@ -386,8 +481,14 @@
     <div class="card col-third">
       <div class="card-title"><span>Corrections Policy</span></div>
       <p>We strive to be fair and accurate. If you spot a factual error:</p>
-      <p><strong>Email:</strong> <a href="mailto:corrections@sun-sentinel.com">corrections@sun-sentinel.com</a></p>
-      <p><strong>Phone:</strong> <a href="tel:9543564300">954-356-4300</a></p>
+      <p>
+        <strong>Email:</strong>
+        <span class="email-wrap">
+          <a href="mailto:corrections@sun-sentinel.com" target="_blank" rel="noopener noreferrer">corrections@sun-sentinel.com</a>
+          <button type="button" class="copy-btn" onclick="copyEmail('corrections@sun-sentinel.com', this)">Copy</button>
+        </span>
+      </p>
+      <p><strong>Phone:</strong> <a href="tel:9543564300" target="_blank" rel="noopener noreferrer">954-356-4300</a></p>
     </div>
 
     <!-- ADDITIONAL RESOURCES -->
@@ -399,22 +500,22 @@
         <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Photo & Licensing</strong>
           <p>Request content permissions or purchase reprints and photos.</p>
-          <a href="https://www.sun-sentinel.com/photo-requests/" target="_blank">&rarr; Licensing Portal</a>
+          <a href="https://www.sun-sentinel.com/photo-requests/" target="_blank" rel="noopener noreferrer">&rarr; Licensing Portal</a>
         </div>
         <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Newsletters</strong>
           <p>Sign up for curated email newsletters and daily briefings.</p>
-          <a href="https://myaccount.sun-sentinel.com/4sunsent/preference?categories=38,39,40,41,42,43,1" target="_blank">&rarr; Membership Preferences</a>
+          <a href="https://myaccount.sun-sentinel.com/4sunsent/preference?categories=38,39,40,41,42,43,1" target="_blank" rel="noopener noreferrer">&rarr; Membership Preferences</a>
         </div>
         <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Archives</strong>
           <p>Browse historic Sun Sentinel archives by date.</p>
-          <a href="https://sun-sentinel.newspapers.com/?xid=1247" target="_blank">&rarr; Search Archives</a>
+          <a href="https://sun-sentinel.newspapers.com/?xid=1247" target="_blank" rel="noopener noreferrer">&rarr; Search Archives</a>
         </div>
         <div class="resources-item">
           <strong style="display:block; margin-bottom:4px;">Main HQ & Phone</strong>
           <p>333 SW 12th Ave.<br>Deerfield Beach, FL 33442</p>
-          <p><strong>Main Line:</strong> <a href="tel:9543564000">954-356-4000</a></p>
+          <p><strong>Main Line:</strong> <a href="tel:9543564000" target="_blank" rel="noopener noreferrer">954-356-4000</a></p>
         </div>
       </div>
 
@@ -470,6 +571,18 @@
   </div>
 
   <script>
+    function copyEmail(email, btn) {
+      navigator.clipboard.writeText(email).then(function() {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
     function openModal() { document.getElementById('letterModal').classList.add('active'); }
     function closeModal() { document.getElementById('letterModal').classList.remove('active'); }
     function handleFormSubmit(e) {
